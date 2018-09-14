@@ -1,17 +1,29 @@
-CREATE DATABASE forum;
+create DATABASE forum;
+DROP DATABASE forum;
 use forum;
-CREATE TABLE usuario (
-  nome VARCHAR(60) NOT NULL,
-  senha VARCHAR(30) NOT NULL,
-  email VARCHAR(20) NOT NULL,
-  PRIMARY KEY (email));
-
-
-CREATE TABLE admin (
-  nome VARCHAR(60) NOT NULL,
-  senha VARCHAR(20) NOT NULL,
-  email VARCHAR(30) NOT NULL,
-  PRIMARY KEY (email));
+drop table users; 
+CREATE TABLE users (
+id integer auto_increment primary key,
+name VARCHAR(60) NOT NULL,
+password VARCHAR(255) NOT NULL,
+email VARCHAR(20) NOT NULL,
+remenber_token varchar(20),
+created_at timestamp,
+updated_at timestamp,
+remember_token varchar(255)
+);
+#drop table usuario;useruseruser
+select * from users;
+CREATE TABLE admins (
+id integer auto_increment primary key,
+name VARCHAR(60) NOT NULL,
+password VARCHAR(255) NOT NULL,
+email VARCHAR(20) NOT NULL,
+remenber_token varchar(20),
+created_at timestamp,
+updated_at timestamp,
+remember_token varchar(255)
+);
 
 drop table conteudo;
 -- -----------------------------------------------------
@@ -22,20 +34,19 @@ CREATE TABLE conteudo (
   nome VARCHAR(100) NOT NULL,
   descricao TEXT NOT NULL,
   link TEXT NOT NULL,
-  usuario_idusuario varchar(30) NOT NULL,
-  admin_idadmin varchar(30) NOT NULL,
+  user integer,
+  admin integer,
   PRIMARY KEY (id),
-    FOREIGN KEY (usuario_idusuario)
-    REFERENCES usuario (email),
-    FOREIGN KEY (admin_idadmin)
-    REFERENCES admin (email));
-select * from conteudo;
+    FOREIGN KEY (user)
+    REFERENCES users (id),
+    FOREIGN KEY (admin)
+    REFERENCES admins (id));
 
 insert into conteudo(nome,descricao,link,usuario_idusuario,admin_idadmin)
 value ('marvel','filmes bla bla','http://www.marvel.com','sardeiro47@gmail.com', 'sardeiro47@gmail.com');
 
 insert into usuario (nome,email,senha) value ('Helter','sardeiro47@gmail.com','12345678');
-insert into admin (nome,email,senha) value ('Helter','sardeiro47@gmail.com','12345678');
+insert into admins (name,email,password) value ('Helter','sardeiro47@gmail.com','12345678');
 CREATE TABLE comentario (
   id INT NULL AUTO_INCREMENT ,
   texto TEXT NOT NULL ,
