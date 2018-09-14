@@ -40,11 +40,14 @@ CREATE TABLE conteudo (
     FOREIGN KEY (user)
     REFERENCES users (id),
     FOREIGN KEY (admin)
-    REFERENCES admins (id));
+    REFERENCES admins (id),
+    created_at timestamp,
+	updated_at timestamp
+    );
 
 insert into conteudo(nome,descricao,link,usuario_idusuario,admin_idadmin)
 value ('marvel','filmes bla bla','http://www.marvel.com','sardeiro47@gmail.com', 'sardeiro47@gmail.com');
-
+select * from users;
 insert into usuario (nome,email,senha) value ('Helter','sardeiro47@gmail.com','12345678');
 insert into admins (name,email,password) value ('Helter','sardeiro47@gmail.com','12345678');
 CREATE TABLE comentario (
@@ -53,7 +56,10 @@ CREATE TABLE comentario (
   conteudo_id INT NOT NULL,
   PRIMARY KEY (id),
     FOREIGN KEY (conteudo_id)
-    REFERENCES conteudo (id));
+    REFERENCES conteudo (id),
+    created_at timestamp,
+	updated_at timestamp
+    );
     alter table conteudo add created_at varchar(20);
     use forum;
    # select u.nome, ct.nome, c.texto from usuario as u inner join conteudo as ct 
