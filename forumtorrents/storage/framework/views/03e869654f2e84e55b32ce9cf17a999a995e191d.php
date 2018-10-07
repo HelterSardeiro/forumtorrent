@@ -28,7 +28,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="/">
+                    <a href="#">
                         Menu Forum Torrents
                     </a>
                 </li>
@@ -39,7 +39,6 @@
                     <a href="/register">Cadastro</a>
                 </li>
             </ul>
-
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -50,9 +49,10 @@
           <h1>Bem-Vindo ao forum Torrents</h1>
           <nav class="navbar navbar-light bg-primary">
             <p class="navbar-brand"></p>
-        <form action="{{ url('/busca') }}" method="post">
+        <form action="<?php echo e(url('/busca')); ?>" method="post">
           
-            {{ csrf_field() }}
+            <?php echo e(csrf_field()); ?>
+
             <table>
                 <td><input type="text" class="form-control" name="nome" placeholder="Pesquisa por nome..." required="required"></td>
                 <td><button class="btn btn-info" type="submit">Pesquisar</button></td>
@@ -60,17 +60,17 @@
             
               
         </form>
-            </nav>
+            
+          </nav>
           <p class="lead">Feito para fazer publicações de links Torrents</p>
           <div id="page-content-wrapper">
-            <!-- <div class="container-fluid"> -->
+            <div class="container-fluid">
                 <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Abrir Menu</a>
-            <!-- </div> -->
+            </div>
         </div>
-        
         </div>
       </header>
-       <hr>
+  
       <section id="about">
         <div class="container">
           <div class="row">
@@ -82,41 +82,23 @@
                                     <tr>
                                         <th>Nome</th>
                                         <th>Descrição</th>
-                                        <th id="center">Link</th>      
-                                        <th>Comentar</th>  
-                                        <th></th> 
-                                        <th>Comentarios</th>   
-                                        
+                                        <th id="center">Link</th>            
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  <?php  if(empty($conteudo)){ echo "ok";} ?>
-                                    @forelse($conteudo as $conteudo)
+                                    <?php $__empty_1 = true; $__currentLoopData = $conteudo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conteudo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
-                                        <td title="Nome">{{$conteudo->nome}}</td>
-                                        <td title="Descrição">{{$conteudo->descricao}}</td>
-                                        <td title="Link" id="center">
-                                            <a class="btn btn-success" href="{{$conteudo->link}}">Baixar Torrent</a>
-                                            </td>
-                                        <td>
-                                        <form method="post"  action="comentario">
-                                        {{ csrf_field() }}
-                                         <textarea class="form-control" name="texto" type="text" required="required"></textarea><br>
-                                         <input type="hidden" name="conteudo_id" value="{{$conteudo->id}}">
-                                         <button class="btn btn-info" type="submit">Comentar</button>
-                                        </form>
-                                        </td>  
-                                        <td>
-                                        </td>
-                                        <td><a class="btn btn-primary" href="comentarios">Ver comentários</a></td>
-                                    
-                                              
+                                        <td title="Nome"><?php echo e($conteudo->nome); ?></td>
+                                        <td title="Descrição"><?php echo e($conteudo->descricao); ?></td>
+                                        <td title="Quantidade" id="center">
+                                            <a class="btn btn-success" href="<?php echo e($conteudo->link); ?>">Baixar Torrent</a>
+                                            </td>           
                                     </tr>
-                                    @empty
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
                                       <td>Conteudo não Encontrado!!!</td>
 
-                                    @endforelse
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -161,3 +143,6 @@
 </body>
 
 </html>
+
+
+
