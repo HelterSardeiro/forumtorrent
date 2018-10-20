@@ -26,8 +26,8 @@
                                 <tbody>
                                     @foreach($comentarios as $comentario)
                                     <tr>
-                                        <td title="Nome">{{$comentario->texto}}</td>
-              
+                                        <td title="texto">Comentario anônimo: {{$comentario->texto}}</td>
+                                        <td> Postado em: {{$comentario->created_at}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
