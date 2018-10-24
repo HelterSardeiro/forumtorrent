@@ -21,8 +21,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <style>
+    .jumbotron{
+        background-color: #00AAAD;
+        border-radius:10px;
+    }
+    </style>
 </head>
-<body>
+<body class="jumbotron">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
